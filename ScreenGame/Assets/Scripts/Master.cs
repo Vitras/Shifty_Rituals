@@ -12,12 +12,24 @@ public class Master : MonoBehaviour {
 	// Use this for initialization
 	public AudioSource source;
 	public AudioClip[] clips;
+	public int currentclip;
 
 	void Start () {
 		DontDestroyOnLoad(this);
+		currentclip = -1;
 		source = this.GetComponent<AudioSource>();
-		clips = new AudioClip[]{Resources.Load<AudioClip>("SFX/Difficulty")};
-		ChangeClip(0);
+		clips = new AudioClip[]{
+			Resources.Load<AudioClip>("SFX/Difficulty"), 
+			Resources.Load<AudioClip>("SFX/DifficultyX"),
+			Resources.Load<AudioClip>("SFX/Difficulty2"),
+			Resources.Load<AudioClip>("SFX/Difficulty2X"),
+			Resources.Load<AudioClip>("SFX/Difficulty3"),
+			Resources.Load<AudioClip>("SFX/Difficulty3X"),
+			Resources.Load<AudioClip>("SFX/Difficulty4"),
+			Resources.Load<AudioClip>("SFX/Difficulty4X"),
+			Resources.Load<AudioClip>("SFX/Difficulty5"),
+			Resources.Load<AudioClip>("SFX/Difficulty5X")};
+		ChangeClip();
 	}
 
 	public void Reset(){
@@ -65,17 +77,19 @@ public class Master : MonoBehaviour {
 	public void SetGroupTask(){
 	}
 
-	public void ChangeClip(int number){
+	public void ChangeClip(){
+		currentclip++;
 		if(source.clip != null)
 		{
-		float ratio = source.clip.length/source.time;
-			source.clip = clips[number];
+			float ratio = source.time/source.clip.length;
+			source.clip = clips[currentclip];
 			source.loop = true;
 			source.time = ratio * source.clip.length;
+			source.Play();
 		}
 		else
 		{
-		source.clip = clips[number];
+		source.clip = clips[currentclip];
 		source.loop = true;
 		source.Play();
 		}
