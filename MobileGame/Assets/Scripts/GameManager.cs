@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
     public void Nextgame()
     {
         // send succes or fail to server
+        // pull fuckup and difficulty
         DontDestroyOnLoad(gameObject);
         int nextLevel = Random.Range(2, amountGames + 1);
         while (nextLevel != Application.loadedLevel)
@@ -35,5 +36,10 @@ public class GameManager : MonoBehaviour {
         }
         Application.LoadLevel(nextLevel);
 
+    }
+
+    public void ReturntoMenu()
+    {
+        Application.LoadLevel(1);
     }
 }
