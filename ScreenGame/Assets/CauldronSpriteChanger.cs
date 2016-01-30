@@ -6,7 +6,6 @@ public class CauldronSpriteChanger : MonoBehaviour {
 
 	public Sprite[,] CauldronSheet;
 	public Image CauldronSprite;
-	public int Current;
 	public float FrameTime;
 	public float CurrentTime;
 	public bool Active;

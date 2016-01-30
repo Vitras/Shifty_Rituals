@@ -66,9 +66,19 @@ public class Master : MonoBehaviour {
 	}
 
 	public void ChangeClip(int number){
+		if(source.clip != null)
+		{
+		float ratio = source.clip.length/source.time;
+			source.clip = clips[number];
+			source.loop = true;
+			source.time = ratio * source.clip.length;
+		}
+		else
+		{
 		source.clip = clips[number];
 		source.loop = true;
 		source.Play();
+		}
 	}
 
 	// Update is called once per frame
