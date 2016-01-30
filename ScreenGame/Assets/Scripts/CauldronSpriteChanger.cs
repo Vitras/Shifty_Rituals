@@ -19,9 +19,16 @@ public class CauldronSpriteChanger : MonoBehaviour {
 		for(int x = 0; x < 7; x++)
 			for(int y = 0; y < 5; y++)
 				CauldronSheet[x, y] = Resources.Load<Sprite>("Textures/cauldron" + (x + 1).ToString() + "X" + (y + 1).ToString());
-		CauldronSprite.sprite = CauldronSheet[0,0];
+		CauldronSprite.sprite = CauldronSheet[CurrentFrame, Mathf.Min((GameObject.Find("Master").GetComponent<Master>().Difficulty - 1), 10) / 2];
 		Frames = 7;
 		CurrentFrame = 0;
+		CurrentTime = 0;
+		SetFrameTime();
+	}
+
+	void SetFrameTime()
+	{
+		FrameTime = 2/(Mathf.Pow(GameObject.Find("Master").GetComponent<Master>().FailureScale, 1.7f));
 	}
 
 	void Update()
@@ -35,6 +42,7 @@ public class CauldronSpriteChanger : MonoBehaviour {
 				CurrentFrame = (CurrentFrame + 1) % Frames;
 				CauldronSprite.sprite = CauldronSheet[CurrentFrame, Mathf.Min((GameObject.Find("Master").GetComponent<Master>().Difficulty - 1), 10) / 2];
 			}
+			SetFrameTime();
 		}
 	}
 }

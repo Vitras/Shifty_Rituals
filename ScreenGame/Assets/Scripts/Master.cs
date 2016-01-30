@@ -19,6 +19,7 @@ public class Master : MonoBehaviour {
 	void Start () {
 		DontDestroyOnLoad(this);
 		currentclip = -1;
+		playerCount = 2;
 		source = this.GetComponent<AudioSource>();
 		clips = new AudioClip[]{
 			Resources.Load<AudioClip>("SFX/Difficulty"), 
@@ -76,7 +77,10 @@ public class Master : MonoBehaviour {
 
 	public void SetDifficulty(){
 		if(AchievedRounds / playerCount >= Difficulty)
+		{
 			Difficulty++;
+			ChangeClip();
+		}
 	}
 
 	public void SetFailure(){
@@ -87,20 +91,19 @@ public class Master : MonoBehaviour {
 	}
 
 	public void ChangeClip(){
-		currentclip++;
 		if(source.clip != null)
 		{
 			float ratio = source.time/source.clip.length;
-			source.clip = clips[currentclip];
+			source.clip = clips[Difficulty-1];
 			source.loop = true;
 			source.time = ratio * source.clip.length;
 			source.Play();
 		}
 		else
 		{
-		source.clip = clips[currentclip];
-		source.loop = true;
-		source.Play();
+			source.clip = clips[Difficulty-1];
+			source.loop = true;
+			source.Play();
 		}
 	}
 

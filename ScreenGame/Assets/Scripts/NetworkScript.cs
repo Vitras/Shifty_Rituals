@@ -44,14 +44,27 @@ public class NetworkScript : Photon.PunBehaviour {
 			.Select (s => s [Random.Range(0, (s.Length))]).ToArray ());
 	}
 
-	string GenerateGame(int number)
+	[PunRPC]
+	void GenerateGame(int number)
 	{
 		switch(number)
 		{
-		case 0: return "PlayShakeGame";
-		case 1: return "PlayHoldGame";
-		case 2: return "PlaySmashGame";
-		default: return "";
+		case 0: 
+			int goal = 10;
+			float thresholdSeconds = 1.0f;
+			float timer = 12.0f;
+			this.photonView.RPC("PlayShakeGame",PhotonTargets.Others,goal,thresholdSeconds,timer); 
+			Debug.Log("PlayShakeGame!");
+			return;
+		case 1: 
+			this.photonView.RPC("PlayMashGame",PhotonTargets.Others, 20, 10.0f); 
+			Debug.Log("PlayMashGame!");
+			return;
+		case 2: 
+			this.photonView.RPC("PlayHoldGame",PhotonTargets.Others, 15, 3, 10.0f); 
+			Debug.Log("PlayHoldGame!");
+			return;
+		default: return;
 		}
 	}
 
@@ -64,13 +77,9 @@ public class NetworkScript : Photon.PunBehaviour {
 	[PunRPC]
 	void SendFirstGame()
 	{
-
 		//do something fancy with these values
-		int goal = 10;
-		float thresholdSeconds = 1.0f;
-		float timer = 12.0f;
-		this.photonView.RPC(GenerateGame(Random.Range(0, MINIGAME_COUNT),PhotonTargets.Others,goal,thresholdSeconds,timer);
-		Application.LoadLevel("Main");
+		GenerateGame(Random.Range(0, MINIGAME_COUNT));
+		Application.LoadLevel("InGame");
 		Debug.Log("SendFirstGame");
 
 	}
@@ -78,11 +87,8 @@ public class NetworkScript : Photon.PunBehaviour {
 	[PunRPC]
 	void SendNextGame()
 	{
-
 		//do something fancy with these values
-		int goal = 10;
-		float thresholdSeconds = 1.0f;
-		this.photonView.RPC(GenerateGame(Random.Range(0, MINIGAME_COUNT),PhotonTargets.Others,goal,thresholdSeconds);
+		GenerateGame(Random.Range(0, MINIGAME_COUNT));
 		Debug.Log("NextGame");
 
 	}

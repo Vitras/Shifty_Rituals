@@ -30,7 +30,7 @@ public class BubblingIntensifiesScript : MonoBehaviour {
 		case 1:
 		default: break;
 		}
-			transform.position = Initial + distortion * 5;
+			transform.position = Initial + distortion * 0.5f;
 			frame = 0;
 		}
 	}
