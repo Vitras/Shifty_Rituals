@@ -9,6 +9,7 @@ public class ButtonScript : MonoBehaviour
 	{
 		string code = GameObject.Find ("RoomCodeInput").GetComponent<Text> ().text;
 		GameObject.Find ("NetworkManager").GetComponent<NetworkScript> ().OnSubmit(code);
+
 	}
 
 }
