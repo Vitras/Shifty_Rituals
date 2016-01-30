@@ -6,12 +6,13 @@ public class ShakeIt : MonoBehaviour {
 
 
     Vector3 lastDirection, newDirection;
-    int shakeAmount, beginColour, framesNoMove, currImage = 0;
-    GameObject master;
+    int shakeAmount, beginColour, currImage = 0;
+    GameManager master;
     Image flask;
+    float framesNoMove;
     bool shaking;
-    public int goal, pauzeThreshold;
-    public float timer;
+    public int goal;
+    public float timer, pauzeThreshold;
     public Sprite[] images;
     
 
@@ -20,10 +21,13 @@ public class ShakeIt : MonoBehaviour {
 	void Start ()
     {
         lastDirection = Input.acceleration;
-        master = GameObject.Find("MasterObject");
+        master = GameObject.Find("MasterObject").GetComponent<GameManager>();
         beginColour = Random.Range(0, 4);
         flask = GameObject.Find("Flask").GetComponent<Image>();
         flask.sprite = images[(beginColour * 3) + currImage];
+        timer = master.timer;
+        goal = master.goal;
+        pauzeThreshold = master.thresh;
 	}
 	
 	// Update is called once per frame
@@ -32,12 +36,12 @@ public class ShakeIt : MonoBehaviour {
         timer -= Time.fixedDeltaTime;
         if (timer < 0)
         {
-            master.GetComponent<GameManager>().Nextgame(false);
+            master.Nextgame(false);
         }
         newDirection = Input.acceleration;
         if (newDirection.magnitude <= 0.5)
         {
-            framesNoMove++;
+            framesNoMove += Time.fixedDeltaTime;
             if (framesNoMove > pauzeThreshold)
             {
                 flask.sprite = images[(beginColour * 3) + currImage];
@@ -60,7 +64,7 @@ public class ShakeIt : MonoBehaviour {
             flask.sprite = images[(beginColour * 3) + currImage];
 			if (shakeAmount >= goal) 
 			{
-				master.GetComponent<GameManager> ().Nextgame (true);
+				master.Nextgame (true);
 			}
         }
         lastDirection = newDirection;
