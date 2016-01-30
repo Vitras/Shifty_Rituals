@@ -1,0 +1,153 @@
+Initialize engine version: 5.3.1f1 (cc9cbbcc37b4)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 530 (ID=0x191b)
+    Vendor:   Intel
+    VRAM:     128 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\Photon3Unity3D.dll (this message is harmless)
+Loading D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
+- Completed reload, in  0.110 seconds
+Platform assembly: D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Repositories\Gamejam\MobileGame\testbuild_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.847304 ms
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.270616 ms
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 340.
+Total: 0.747059 ms (FindLiveObjects: 0.087308 ms CreateObjectMapping: 0.033580 ms MarkObjects: 0.596541 ms  DeleteObjects: 0.026469 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.377678 ms
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 602.
+Total: 0.506072 ms (FindLiveObjects: 0.055308 ms CreateObjectMapping: 0.020938 ms MarkObjects: 0.410863 ms  DeleteObjects: 0.018172 ms)
+
+OnLeftRoom (local)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+OnDisconnectedFromPhoton
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.608393 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 477.
+Total: 0.281283 ms (FindLiveObjects: 0.022123 ms CreateObjectMapping: 0.015802 ms MarkObjects: 0.234666 ms  DeleteObjects: 0.007901 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.293135 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 477.
+Total: 0.589430 ms (FindLiveObjects: 0.056493 ms CreateObjectMapping: 0.021333 ms MarkObjects: 0.504887 ms  DeleteObjects: 0.005530 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.240987 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 493.
+Total: 0.342517 ms (FindLiveObjects: 0.030419 ms CreateObjectMapping: 0.016987 ms MarkObjects: 0.289974 ms  DeleteObjects: 0.003950 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.500146 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 477.
+Total: 0.421134 ms (FindLiveObjects: 0.043456 ms CreateObjectMapping: 0.025283 ms MarkObjects: 0.339357 ms  DeleteObjects: 0.011851 ms)
+
+OnCreatedRoom
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.924442 ms
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 602.
+Total: 0.935108 ms (FindLiveObjects: 0.114962 ms CreateObjectMapping: 0.071110 ms MarkObjects: 0.705973 ms  DeleteObjects: 0.041876 ms)
+
+OnLeftRoom (local)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.475258 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 477.
+Total: 0.342122 ms (FindLiveObjects: 0.045827 ms CreateObjectMapping: 0.018567 ms MarkObjects: 0.267456 ms  DeleteObjects: 0.009086 ms)
+
+Disconnected from Photon.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.257184 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 493.
+Total: 0.382418 ms (FindLiveObjects: 0.024098 ms CreateObjectMapping: 0.015407 ms MarkObjects: 0.338172 ms  DeleteObjects: 0.003950 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.317233 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 784.
+Total: 0.409282 ms (FindLiveObjects: 0.031999 ms CreateObjectMapping: 0.024888 ms MarkObjects: 0.338567 ms  DeleteObjects: 0.013037 ms)
+
+Update() was called by Unity. Scene is loaded. Let's connect to the Photon Master Server. Calling: PhotonNetwork.ConnectUsingSettings();
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room. Calling: PhotonNetwork.JoinRandomRoom();
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+OnJoinedRoom() called by PUN. Now this client is in a room. From here on, your game would be running. For reference, all callbacks are listed in enum: PhotonNetworkingMessage
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Instantiating: Robot Kyle 2D
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.481974 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 638.
+Total: 0.388344 ms (FindLiveObjects: 0.028049 ms CreateObjectMapping: 0.024888 ms MarkObjects: 0.327900 ms  DeleteObjects: 0.007111 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.910615 ms
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 619.
+Total: 0.477233 ms (FindLiveObjects: 0.052938 ms CreateObjectMapping: 0.030814 ms MarkObjects: 0.359900 ms  DeleteObjects: 0.032790 ms)
+
+Can't execute Disconnect() while not connected. Nothing changed. State: PeerCreated
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.293135 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 642.
+Total: 0.600097 ms (FindLiveObjects: 0.063209 ms CreateObjectMapping: 0.028839 ms MarkObjects: 0.501727 ms  DeleteObjects: 0.005925 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 20c0 -> priority: 1 
+  Thread -> id: 1c18 -> priority: 1 
