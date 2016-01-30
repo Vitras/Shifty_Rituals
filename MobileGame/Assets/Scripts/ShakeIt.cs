@@ -52,8 +52,10 @@ public class ShakeIt : MonoBehaviour {
             else
                 currImage++;
             flask.sprite = images[(beginColour * 3) + currImage];
-            if (shakeAmount >= goal)
-                master.GetComponent<GameManager>().Nextgame();
+			if (shakeAmount >= goal) 
+			{
+				master.GetComponent<GameManager> ().Nextgame (true);
+			}
         }
         lastDirection = newDirection;
         
