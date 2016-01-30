@@ -29,7 +29,7 @@ public class NetworkScript : Photon.PunBehaviour {
 		roomName = GenerateRoomName (4);
 		RoomOptions options = new RoomOptions (){isVisible = true,maxPlayers = 2};
 		PhotonNetwork.CreateRoom (roomName, options, TypedLobby.Default);
-		GameObject.Find("CodeText").GetComponent<Text>().text = roomName;
+		GameObject.Find("CodeText").GetComponent<Text>().text = roomName[0] + " " + roomName[1] + " " + roomName[2] + " " + roomName[3];
 	}
 
 	public override void OnJoinedRoom ()
