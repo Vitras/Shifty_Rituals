@@ -31,12 +31,25 @@ public class NetworkScript : Photon.PunBehaviour {
 	public override void OnJoinedRoom ()
 	{
 		Debug.Log ("Joined room: " + roomName);
+		this.photonView.RPC ("ChatMessage", PhotonTargets.Others, "hell", "yeah!");
 	}
+
+	public override void OnPhotonJoinRoomFailed (object[] codeAndMsg)
+	{
+		Debug.Log ("Joining room failed");
+	}
+
 
 	public void OnSubmit(string code)
 	{
 		PhotonNetwork.JoinRoom (code);
 		roomName = code;
+	}
+
+	[PunRPC]
+	void ChatMessage(string a, string b)
+	{
+		Debug.Log("ChatMessage " + a + " " + b);
 	}
 
 }
