@@ -11,7 +11,8 @@ public class WinLose : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        Debug.Log(GameObject.Find("MasterObject"));
+        Debug.Log(Input.touchCount);
+        Debug.Log(Input.GetTouch(0));
         master = GameObject.Find("MasterObject").GetComponent<GameManager>();
         source = GetComponent<AudioSource>();
         if (master.succes)

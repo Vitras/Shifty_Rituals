@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
 
     public void NextGame()
     {
-        networkManager.photonView.RPC("SendFirstGame", PhotonTargets.Others);
+        networkManager.photonView.RPC("SendNextGame", PhotonTargets.Others);
     }
     public void ReturntoMenu()
     {
