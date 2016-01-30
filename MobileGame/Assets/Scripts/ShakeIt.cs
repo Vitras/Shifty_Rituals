@@ -27,14 +27,14 @@ public class ShakeIt : MonoBehaviour {
         flask.sprite = images[(beginColour * 3) + currImage];
         timer = master.timer;
         goal = master.goal;
-        pauzeThreshold = master.thresh;
+        pauzeThreshold = master.extraf;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate ()
     {
         timer -= Time.fixedDeltaTime;
-        if (timer < 0)
+        if (timer <= 0)
         {
             master.Results(false);
         }

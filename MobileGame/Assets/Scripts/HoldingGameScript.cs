@@ -11,7 +11,7 @@ public class HoldingGameScript : MonoBehaviour {
 	public GameObject fire;
 	public bool firing;
     private float timer;
-    private int heat, targetHeat, incRatio, stateReach;
+    private int heat, incRatio, goal;
 
 	public enum BurnerState
 	{
@@ -29,6 +29,9 @@ public class HoldingGameScript : MonoBehaviour {
 		//networkManager = GameObject.Find ("NetworkManager").GetComponent<NetworkScript> ();
 		currentState = BurnerState.Calm;
         master = GameObject.Find("MasterObject").GetComponent<GameManager>();
+        incRatio = master.extrain;
+        goal = master.goal;
+        timer = master.timer;
 	}
 	
 	// Update is called once per frame
@@ -37,11 +40,12 @@ public class HoldingGameScript : MonoBehaviour {
         timer -= Time.fixedDeltaTime;
         if (timer <= 0)
             master.Results(false);
-        if (heat <= stateReach)
+
+        if (heat <= goal/3)
             currentState = BurnerState.Calm;
-        else if (heat <= 2 * stateReach)
+        else if (heat <= goal *(3/4))
             currentState = BurnerState.Turbulent;
-        else if (heat <= 3 * stateReach)
+        else if (heat <= goal)
             currentState = BurnerState.Done;
         else
             currentState = BurnerState.Overflowing;

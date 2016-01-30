@@ -59,12 +59,40 @@ public class NetworkScript : Photon.PunBehaviour {
         Debug.Log("gameloading");
 		var script = GameObject.Find ("MasterObject").GetComponent<GameManager>();
         script.goal = goal;
-		script.thresh = threshold;
+		script.extraf = threshold;
         script.timer = timer;
 		this.photonView.RPC ("GameStarted", PhotonTargets.Others);
 	}
 
-	[PunRPC]
+    [PunRPC]
+    void PlayMashGame(int goal, float threshold, float timer)
+    {
+        Debug.Log("need to start game");
+        Application.LoadLevel(3);
+        Debug.Log("gameloading");
+        var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
+        script.goal = goal;
+        script.timer = timer;
+        this.photonView.RPC("GameStarted", PhotonTargets.Others);
+    }
+
+    [PunRPC]
+    void PlayHoldGame(int goal, int incRatio, float timer)
+    {
+        Debug.Log("need to start game");
+        Application.LoadLevel(4);
+        Debug.Log("gameloading");
+        var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
+        script.goal = goal;
+        script.extrain = incRatio;
+        script.timer = timer;
+        this.photonView.RPC("GameStarted", PhotonTargets.Others);
+    }
+
+
+
+
+    [PunRPC]
 	void GetValues(float difficulty, float fuckUp)
 	{
 		

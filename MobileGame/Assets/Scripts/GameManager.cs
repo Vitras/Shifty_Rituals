@@ -5,8 +5,8 @@ public class GameManager : MonoBehaviour {
     public int amountGames = 4;
     public float fuckUp, difficulty;
 	private NetworkScript networkManager;
-    public float timer, thresh;
-    public int goal;
+    public float timer, extraf;
+    public int goal, extrain;
     public bool succes;
 
 	// Use this for initialization
