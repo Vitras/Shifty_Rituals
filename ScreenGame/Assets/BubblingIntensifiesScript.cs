@@ -26,6 +26,6 @@ public class BubblingIntensifiesScript : MonoBehaviour {
 //		case 1: break;
 //		default: break;
 //		}
-		transform = Initial + distortion;
+		transform.position = Initial + distortion;
 	}
 }
