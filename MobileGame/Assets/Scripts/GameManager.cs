@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
 
         // pull fuckup and difficulty
         DontDestroyOnLoad(gameObject);
-        Application.LoadLevel(3);
+        Application.LoadLevel(5);
 
     }
 

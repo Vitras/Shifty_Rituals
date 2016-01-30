@@ -17,7 +17,7 @@ public class Masher : MonoBehaviour {
 		currentState = 0;
 		currentSpriteRenderer = MasherObject.GetComponent<SpriteRenderer>();
 		currentSpriteRenderer.sprite = MasherSprites[currentState];
-        master = GameObject.Find(" MasterObject").GetComponent<GameManager>();
+        master = GameObject.Find("MasterObject").GetComponent<GameManager>();
         goal = master.goal;
         timer = master.timer;
 	}

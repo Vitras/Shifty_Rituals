@@ -30,6 +30,7 @@ public class NetworkScript : Photon.PunBehaviour {
 
 	public override void OnJoinedRoom ()
 	{
+        //send player amount
 		this.photonView.RPC ("SendFirstGame", PhotonTargets.Others);
 	}
 
@@ -65,7 +66,7 @@ public class NetworkScript : Photon.PunBehaviour {
 	}
 
     [PunRPC]
-    void PlayMashGame(int goal, float threshold, float timer)
+    void PlayMashGame(int goal, float timer)
     {
         Debug.Log("need to start game");
         Application.LoadLevel(3);

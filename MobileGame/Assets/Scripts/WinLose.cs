@@ -27,14 +27,17 @@ public class WinLose : MonoBehaviour {
             background.sprite = backgrounds[1];
         }
         source.Play();
+        Debug.Log("StartWait");
         StartCoroutine(wait2Sec());
+        Debug.Log("EndWait");
+        master.NextGame();
 
-	}
+    }
 	
 	// Update is called once per frame
 	IEnumerator wait2Sec()
     {
         yield return new WaitForSeconds(1.5f);
-        master.NextGame();
+
     }
 }
