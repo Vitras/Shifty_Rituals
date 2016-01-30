@@ -37,7 +37,7 @@ public class WinLose : MonoBehaviour {
 	// Update is called once per frame
 	IEnumerator wait2Sec()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3);
 
     }
 }
