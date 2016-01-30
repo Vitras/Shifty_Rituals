@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 	private NetworkScript networkManager;
     public float timer, thresh;
     public int goal;
+    public bool succes;
 
 	// Use this for initialization
 	void Start ()
@@ -28,22 +29,22 @@ public class GameManager : MonoBehaviour {
         //give the server green light for play
     }
 
-	public void Nextgame(bool succes)
+	public void Results(bool succes)
     {
+        this.succes = succes;
         // send succes or fail to server
 		networkManager.photonView.RPC("GameEnded", PhotonTargets.Others,succes);
 
         // pull fuckup and difficulty
         DontDestroyOnLoad(gameObject);
-        int nextLevel = Random.Range(2, amountGames + 1);
-        while (nextLevel != Application.loadedLevel)
-        {
-            nextLevel = Random.Range(2, amountGames+1);
-        }
-        Application.LoadLevel(nextLevel);
+        Application.LoadLevel(3);
 
     }
 
+    public void NextGame()
+    {
+        networkManager.photonView.RPC("SendFirstGame", PhotonTargets.Others);
+    }
     public void ReturntoMenu()
     {
         Application.LoadLevel(1);
