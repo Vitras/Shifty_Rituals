@@ -8,8 +8,16 @@ public class Master : MonoBehaviour {
 	public string GroupTask;
 	public double ElapsedTime;
 	public int AchievedRounds;
+	public int GameState; //0 = stationary, 1 = playing, 2 = gameover
 	// Use this for initialization
+	public AudioSource source;
+	public AudioClip[] clips;
+
 	void Start () {
+		DontDestroyOnLoad(this);
+		source = this.GetComponent<AudioSource>();
+		clips = new AudioClip[]{};
+		ChangeClip(0);
 	}
 
 	public void Reset(){
@@ -17,7 +25,6 @@ public class Master : MonoBehaviour {
 		Difficulty = 1;
 		GroupTask = "";
 		AchievedRounds = 0;
-		SetUI();
 	}
 
 	public void ApplyResult(bool success){
@@ -27,7 +34,17 @@ public class Master : MonoBehaviour {
 		}
 		else
 		{
+			SetFailure();
+			if(FailureScale > 10)
+			{
+				GameOver();
+			}
+			else
+			{
+				AchievedRounds++;
+			}
 		}
+		SetDifficulty();
 	}
 
 	public void GameOver(){
@@ -42,14 +59,16 @@ public class Master : MonoBehaviour {
 	public void SetDifficulty(){
 	}
 
+	public void SetFailure(){
+	}
+
 	public void SetGroupTask(){
 	}
 
-	void Update(){
-		if(SceneManagerHelper.ActiveSceneName == "TheRealMain")
-		{
-			
-		}
+	public void ChangeClip(int number){
+		source.clip = clips[number];
+		source.loop = true;
+		source.Play();
 	}
 
 	// Update is called once per frame
