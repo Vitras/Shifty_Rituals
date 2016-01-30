@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Master : MonoBehaviour {
 
@@ -43,6 +44,7 @@ public class Master : MonoBehaviour {
 		if(success)
 		{
 			AchievedRounds++;
+			GameObject.Find("SuccessChecker").GetComponent<Text>().text = "Success!";
 		}
 		else
 		{
@@ -54,13 +56,16 @@ public class Master : MonoBehaviour {
 			else
 			{
 				AchievedRounds++;
+				GameObject.Find("SuccessChecker").GetComponent<Text>().text = "Failure!";
 			}
 		}
 		SetDifficulty();
 	}
 
 	public void GameOver(){
+		GameObject.Find("SuccessChecker").GetComponent<Text>().text = "You lose. Good day sir!";
 	}
+
 
 	public void ApplyDifficulty(){
 	}
@@ -72,6 +77,7 @@ public class Master : MonoBehaviour {
 	}
 
 	public void SetFailure(){
+		FailureScale++;
 	}
 
 	public void SetGroupTask(){
