@@ -26,7 +26,8 @@ public class NetworkScript : Photon.PunBehaviour {
 	public override void OnJoinedLobby ()
 	{
 		roomName = GenerateRoomName (4);
-		PhotonNetwork.CreateRoom (roomName);
+		RoomOptions options = new RoomOptions (){isVisible = true,maxPlayers = 2};
+		PhotonNetwork.CreateRoom (roomName, options, TypedLobby.Default);
 	}
 
 	public override void OnJoinedRoom ()
@@ -40,6 +41,13 @@ public class NetworkScript : Photon.PunBehaviour {
 		return new string (Enumerable.Repeat (chars, length)
 			.Select (s => s [Random.Range(0, (s.Length))]).ToArray ());
 	}
+
+	[PunRPC]
+	void ChatMessage(string a, string b)
+	{
+		Debug.Log("ChatMessage " + a + " " + b);
+	}
+		
 
 }
 
