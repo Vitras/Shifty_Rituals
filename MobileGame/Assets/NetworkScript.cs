@@ -36,6 +36,7 @@ public class NetworkScript : Photon.PunBehaviour {
 	public void OnSubmit(string code)
 	{
 		PhotonNetwork.JoinRoom (code);
+		roomName = code;
 	}
 
 }
