@@ -29,9 +29,9 @@ public class ShakeIt : MonoBehaviour {
         goal = master.goal;
         pauzeThreshold = master.extraf;
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+
+    // Update is called once per frame
+    void FixedUpdate()
     {
         timer -= Time.fixedDeltaTime;
         if (timer <= 0)
@@ -55,10 +55,17 @@ public class ShakeIt : MonoBehaviour {
             to = false;
             flask.sprite = images[(beginColour * 3) + currImage];
         }
-        else if (Vector3.Angle(newDirection.normalized, lastDirection.normalized) > 90)
+        else
         {
-            
-            shakeAmount++;
+            if (Vector3.Angle(newDirection.normalized, lastDirection.normalized) > 90)
+            {
+
+                shakeAmount++;
+                if (shakeAmount >= goal)
+                {
+                    master.Results(true);
+                }
+            }
             if (to)
             {
                 currImage--;
@@ -67,12 +74,7 @@ public class ShakeIt : MonoBehaviour {
             else
                 currImage++;
             flask.sprite = images[(beginColour * 3) + currImage];
-			if (shakeAmount >= goal) 
-			{
-				master.Results(true);
-			}
         }
         lastDirection = newDirection;
-        
-	}
+    }
 }
