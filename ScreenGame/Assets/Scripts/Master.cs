@@ -16,7 +16,7 @@ public class Master : MonoBehaviour {
 	void Start () {
 		DontDestroyOnLoad(this);
 		source = this.GetComponent<AudioSource>();
-		clips = new AudioClip[]{};
+		clips = new AudioClip[]{Resources.Load<AudioClip>("SFX/Difficulty")};
 		ChangeClip(0);
 	}
 
