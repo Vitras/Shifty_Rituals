@@ -30,8 +30,6 @@ public class NetworkScript : Photon.PunBehaviour {
 
 	public override void OnJoinedRoom ()
 	{
-		Debug.Log ("Joined room: " + roomName);
-        Debug.Log(PhotonTargets.Others);
 		this.photonView.RPC ("SendFirstGame", PhotonTargets.Others);
 	}
 
@@ -56,7 +54,9 @@ public class NetworkScript : Photon.PunBehaviour {
 	[PunRPC]
 	void PlayShakeGame(int goal, float threshold, float timer)
 	{
-		Application.LoadLevel (3);
+        Debug.Log("need to start game");
+		Application.LoadLevel (2);
+        Debug.Log("gameloading");
 		var script = GameObject.Find ("MasterObject").GetComponent<GameManager>();
         script.goal = goal;
 		script.thresh = threshold;
