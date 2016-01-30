@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class NetworkScript : Photon.PunBehaviour {
 
-
+	public const int MINIGAME_COUNT = 3;
 	public string roomName;
 
 	// Use this for initialization
@@ -44,6 +44,17 @@ public class NetworkScript : Photon.PunBehaviour {
 			.Select (s => s [Random.Range(0, (s.Length))]).ToArray ());
 	}
 
+	string GenerateGame(int number)
+	{
+		switch(number)
+		{
+		case 0: return "PlayShakeGame";
+		case 1: return "PlayHoldGame";
+		case 2: return "PlaySmashGame";
+		default: return "";
+		}
+	}
+
 	[PunRPC]
 	void ChatMessage(string a, string b)
 	{
@@ -58,7 +69,8 @@ public class NetworkScript : Photon.PunBehaviour {
 		int goal = 10;
 		float thresholdSeconds = 1.0f;
 		float timer = 12.0f;
-		this.photonView.RPC("PlayShakeGame",PhotonTargets.Others,goal,thresholdSeconds,timer);
+		this.photonView.RPC(GenerateGame(Random.Range(0, MINIGAME_COUNT),PhotonTargets.Others,goal,thresholdSeconds,timer);
+		Application.LoadLevel("Main");
 		Debug.Log("SendFirstGame");
 
 	}
@@ -70,13 +82,15 @@ public class NetworkScript : Photon.PunBehaviour {
 		//do something fancy with these values
 		int goal = 10;
 		float thresholdSeconds = 1.0f;
-		this.photonView.RPC("PlayShakeGame",PhotonTargets.Others,goal,thresholdSeconds);
+		this.photonView.RPC(GenerateGame(Random.Range(0, MINIGAME_COUNT),PhotonTargets.Others,goal,thresholdSeconds);
+		Debug.Log("NextGame");
 
 	}
 
 	[PunRPC]
 	void GameStarted()
 	{
+		Debug.Log("Game started");
 		//set some internal variable
 	}
 
@@ -84,6 +98,7 @@ public class NetworkScript : Photon.PunBehaviour {
 	void GameEnded(bool success)
 	{
 		GameObject.Find("Master").GetComponent<Master>().ApplyResult(success);
+		Debug.Log("Game started");
 		//set some internal variable
 		//adjust fuckup meter
 	}
