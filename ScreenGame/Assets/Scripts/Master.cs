@@ -14,6 +14,7 @@ public class Master : MonoBehaviour {
 	public AudioSource source;
 	public AudioClip[] clips;
 	public int currentclip;
+	public int playerCount;
 
 	void Start () {
 		DontDestroyOnLoad(this);
@@ -44,7 +45,7 @@ public class Master : MonoBehaviour {
 		if(success)
 		{
 			AchievedRounds++;
-			GameObject.Find("SuccessChecker").GetComponent<Text>().text = "Success!";
+			Debug.Log("Success!");
 		}
 		else
 		{
@@ -55,15 +56,15 @@ public class Master : MonoBehaviour {
 			}
 			else
 			{
-				AchievedRounds++;
-				GameObject.Find("SuccessChecker").GetComponent<Text>().text = "Failure!";
+				Debug.Log("Failure!");
 			}
 		}
 		SetDifficulty();
 	}
 
 	public void GameOver(){
-		GameObject.Find("SuccessChecker").GetComponent<Text>().text = "You lose. Good day sir!";
+		Debug.Log("You lose. Good day sir!");
+		GameState = 2;
 	}
 
 
@@ -74,6 +75,8 @@ public class Master : MonoBehaviour {
 	}
 
 	public void SetDifficulty(){
+		if(AchievedRounds / playerCount >= Difficulty)
+			Difficulty++;
 	}
 
 	public void SetFailure(){
