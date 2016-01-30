@@ -6,11 +6,12 @@ public class ShakeIt : MonoBehaviour {
 
 
     Vector3 lastDirection, newDirection;
-    int shakeAmount, beginColour, framesNoMove;
+    int shakeAmount, beginColour, framesNoMove, currImage = 0;
     GameObject master;
     Image flask;
     bool shaking;
-    public int goal, pauzeThreshold, currImage = 0;
+    public int goal, pauzeThreshold;
+    public float timer;
     public Sprite[] images;
     
 
@@ -28,6 +29,11 @@ public class ShakeIt : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
     {
+        timer -= Time.fixedDeltaTime;
+        if (timer < 0)
+        {
+            master.GetComponent<GameManager>().Nextgame(false);
+        }
         newDirection = Input.acceleration;
         if (newDirection.magnitude <= 0.5)
         {
