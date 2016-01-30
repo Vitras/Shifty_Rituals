@@ -30,12 +30,51 @@ public class NetworkScript : Photon.PunBehaviour {
 
 	public override void OnJoinedRoom ()
 	{
-		Debug.Log ("Joined room: " + roomName);
+		this.photonView.RPC ("SendFirstGame", PhotonTargets.Others);
 	}
+
+	public override void OnPhotonJoinRoomFailed (object[] codeAndMsg)
+	{
+		Debug.Log ("Joining room failed");
+	}
+
 
 	public void OnSubmit(string code)
 	{
 		PhotonNetwork.JoinRoom (code);
+		roomName = code;
 	}
+
+	[PunRPC]
+	void ChatMessage(string a, string b)
+	{
+		Debug.Log("ChatMessage " + a + " " + b);
+	}
+
+	[PunRPC]
+	void PlayShakeGame(int goal, float threshold, float timer)
+	{
+        Debug.Log("need to start game");
+		Application.LoadLevel (2);
+        Debug.Log("gameloading");
+		var script = GameObject.Find ("MasterObject").GetComponent<GameManager>();
+        script.goal = goal;
+		script.thresh = threshold;
+        script.timer = timer;
+		this.photonView.RPC ("GameStarted", PhotonTargets.Others);
+	}
+
+	[PunRPC]
+	void GetValues(float difficulty, float fuckUp)
+	{
+		
+	}
+
+	[PunRPC]
+	void GameOver()
+	{
+		Application.LoadLevel (0);
+	}
+		
 
 }
