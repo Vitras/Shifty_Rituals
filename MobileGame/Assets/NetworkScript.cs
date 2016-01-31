@@ -119,6 +119,16 @@ public class NetworkScript : Photon.PunBehaviour {
         this.photonView.RPC("GameStarted", PhotonTargets.Others);
     }
 
+	void PlayMemoryGame(string answer)
+	{
+		Debug.Log("need to start game");
+		Application.LoadLevel(7);
+		Debug.Log("gameloading");
+		var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
+		script.memoryWord = answer;
+		this.photonView.RPC("GameStarted", PhotonTargets.Others);
+	}
+
 
     [PunRPC]
 	void GetValues(float difficulty, float fuckUp)
