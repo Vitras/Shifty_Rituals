@@ -79,8 +79,14 @@ public class NetworkScript : Photon.PunBehaviour {
 	{
 		Debug.Log("ChatMessage " + a + " " + b);
 	}
-		
-	[PunRPC]
+
+    [PunRPC]
+    void IntroNext()
+    {
+        Application.LoadLevel(Application.loadedLevel+1);
+    }
+
+    [PunRPC]
 	void SendFirstGame()
 	{
 		//do something fancy with these values
