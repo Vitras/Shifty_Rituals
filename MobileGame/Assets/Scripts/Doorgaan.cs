@@ -18,7 +18,7 @@ public class Doorgaan : MonoBehaviour {
         {
             DontDestroyOnLoad(GameObject.Find("MasterObject"));
             GameObject.Find("NetworkManager").GetComponent<NetworkScript>().photonView.RPC("IntroNext", PhotonTargets.Others);
-            Application.LoadLevel(Application.loadedLevel + 1);
+            GameObject.Find("NetworkManager").GetComponent<NetworkScript>().photonView.RPC("SendFirstGame", PhotonTargets.Others);
         }
 
 	}
