@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Hoverscript : MonoBehaviour {
 
+	public float offset = 0.0f;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -10,6 +12,6 @@ public class Hoverscript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = new Vector3 (transform.position.x, transform.position.y + Mathf.Sin (Time.time) / 400.0f, transform.position.y);
+		transform.position = new Vector3 (transform.position.x, transform.position.y + Mathf.Sin (Time.time + offset) / 400.0f, transform.position.y);
 	}
 }
