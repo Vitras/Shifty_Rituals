@@ -149,7 +149,7 @@ public class NetworkScript : Photon.PunBehaviour {
 	[PunRPC]
 	void GameOver()
 	{
-		Application.LoadLevel (0);
+		Application.LoadLevel ("GameOver");
 	}
 		
 
