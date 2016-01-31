@@ -8,14 +8,14 @@ public class NetworkScript : Photon.PunBehaviour {
 
 	public const int MINIGAME_COUNT = 3;
 	public string roomName;
+	public string memorisationTerm;
+	public int memorisationTurn;
 
 	// Use this for initialization
 	public void Start() 
 	{
 		//connect to photon network
 		PhotonNetwork.ConnectUsingSettings("0.0");
-
-
 	}
 
 	// Update is called once per frame
@@ -50,18 +50,16 @@ public class NetworkScript : Photon.PunBehaviour {
 		switch(number)
 		{
 		case 0: 
-			int goal = 10;
-			float thresholdSeconds = 1.0f;
-			float timer = 12.0f;
-			this.photonView.RPC("PlayShakeGame",PhotonTargets.Others,goal,thresholdSeconds,timer); 
+			this.photonView.RPC("PlayShakeGame",PhotonTargets.Others, GameObject.Find("Master").GetComponent<Master>().Difficulty); 
 			Debug.Log("PlayShakeGame!");
+
 			return;
 		case 1: 
-			this.photonView.RPC("PlayMashGame",PhotonTargets.Others, 20, 10.0f); 
+			this.photonView.RPC("PlayMashGame",PhotonTargets.Others, GameObject.Find("Master").GetComponent<Master>().Difficulty); 
 			Debug.Log("PlayMashGame!");
 			return;
 		case 2: 
-			this.photonView.RPC("PlayHoldGame",PhotonTargets.Others, 15, 3, 10.0f); 
+			this.photonView.RPC("PlayHoldGame",PhotonTargets.Others, GameObject.Find("Master").GetComponent<Master>().Difficulty);
 			Debug.Log("PlayHoldGame!");
 			return;
 		default: return;
@@ -73,7 +71,7 @@ public class NetworkScript : Photon.PunBehaviour {
 	{
 		Debug.Log("ChatMessage " + a + " " + b);
 	}
-
+		
 	[PunRPC]
 	void SendFirstGame()
 	{
@@ -87,9 +85,25 @@ public class NetworkScript : Photon.PunBehaviour {
 	[PunRPC]
 	void SendNextGame()
 	{
-		//do something fancy with these values
+		if(Random.Range(0, 5) < 3)
+		{
+		GameObject.Find("Master").GetComponent<Master>().SetGroupTask("Remember the following word for later: ");
+		GameObject.Find("MemorisationNotifier").GetComponent<Text>().text = GenerateRoomName(
+			Random.Range(3, 3 + GameObject.Find("Master").GetComponent<Master>().Difficulty/2));
+			memorisationTurn = Random.Range(2, 6);
+		}
+		memorisationTurn--;
+		if(memorisationTurn == 0)
+		{
+			this.photonView.RPC("PlayMemorisationGame", PhotonTargets.Others, memorisationTerm);
+			Debug.Log("PlayMemorisationGame");
+		}
+		else
+		{
+		GameObject.Find("MemorisationNotifier").GetComponent<Text>().text = "";
 		GenerateGame(Random.Range(0, MINIGAME_COUNT));
 		Debug.Log("NextGame");
+		}
 
 	}
 
