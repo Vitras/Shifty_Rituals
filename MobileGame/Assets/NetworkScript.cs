@@ -32,8 +32,13 @@ public class NetworkScript : Photon.PunBehaviour {
 	public override void OnJoinedRoom ()
 	{
         //send player amount
+
 		int players = GameObject.Find("Slider").GetComponent<Slider>().value;
 		this.photonView.RPC ("SendFirstGame", PhotonTargets.Others,players);
+
+        Application.LoadLevel(2);
+		this.photonView.RPC ("IntroNext", PhotonTargets.Others);
+
 	}
 
 	public override void OnPhotonJoinRoomFailed (object[] codeAndMsg)
