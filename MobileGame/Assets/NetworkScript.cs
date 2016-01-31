@@ -62,7 +62,7 @@ public class NetworkScript : Photon.PunBehaviour {
         script.difficulty = difficulty;
         script.goal = Mathf.Clamp(10+2*difficulty+Random.Range(-5,6),10,70);
 		script.extraf = 30-2*difficulty;
-        script.timer = 12+Random.Range(-1f,1f)*difficulty;
+        script.timer = 15+Random.Range(-1f,1f)*difficulty;
 		this.photonView.RPC ("GameStarted", PhotonTargets.Others);
 	}
 
@@ -74,7 +74,7 @@ public class NetworkScript : Photon.PunBehaviour {
         Debug.Log("gameloading");
         var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
         script.goal = 10*difficulty+10+Random.Range(-5,6);
-        script.timer = 12 + Random.Range(-1f, 1f) * difficulty;
+        script.timer = 15 + Random.Range(-1f, 1f) * difficulty;
         script.difficulty = difficulty;
         this.photonView.RPC("GameStarted", PhotonTargets.Others);
     }
@@ -88,7 +88,7 @@ public class NetworkScript : Photon.PunBehaviour {
         var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
         script.goal = 100+5*difficulty+Random.Range(-10,11);
         script.extrain = script.goal/7 - Random.Range(5,11);
-        script.timer = 12 + Random.Range(-1f, 1f) * difficulty;
+        script.timer = 15 + Random.Range(-1f, 1f) * difficulty;
         script.difficulty = difficulty;
         this.photonView.RPC("GameStarted", PhotonTargets.Others);
     }
@@ -101,7 +101,7 @@ public class NetworkScript : Photon.PunBehaviour {
         var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
         script.goal = Random.Range(0,100);
         script.extrain = 100/difficulty + Random.Range(-5,6);
-        script.timer = 12 + Random.Range(-1f, 1f) * difficulty;
+        script.timer = 15 + Random.Range(-1f, 1f) * difficulty;
         script.difficulty = difficulty;
         this.photonView.RPC("GameStarted", PhotonTargets.Others);
     }
