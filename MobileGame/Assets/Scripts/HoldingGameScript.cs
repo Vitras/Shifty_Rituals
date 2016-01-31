@@ -10,8 +10,8 @@ public class HoldingGameScript : MonoBehaviour {
 	public GameObject b1,b2,b3,b4;
 	public GameObject fire;
 	public bool firing;
-    private float timer;
-    private int heat, incRatio, goal;
+    public float timer;
+    public float heat, incRatio, goal;
 
 	public enum BurnerState
 	{
@@ -26,12 +26,13 @@ public class HoldingGameScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		//networkManager = GameObject.Find ("NetworkManager").GetComponent<NetworkScript> ();
 		currentState = BurnerState.Calm;
         master = GameObject.Find("MasterObject").GetComponent<GameManager>();
         incRatio = master.extrain;
+
         goal = master.goal;
         timer = master.timer;
+
 	}
 	
 	// Update is called once per frame
@@ -41,12 +42,13 @@ public class HoldingGameScript : MonoBehaviour {
         if (timer <= 0)
             master.Results(false);
 
-        if (heat <= goal/3)
-            currentState = BurnerState.Calm;
-        else if (heat <= goal *(3/4))
-            currentState = BurnerState.Turbulent;
-        else if (heat <= goal)
-            currentState = BurnerState.Done;
+		if (heat <= goal / 3)
+			currentState = BurnerState.Calm;
+		else if (heat <= goal * (0.75)) {
+			currentState = BurnerState.Turbulent;
+		} else if (heat <= goal) {
+			currentState = BurnerState.Done;
+		}
         else
             currentState = BurnerState.Overflowing;
 
@@ -116,6 +118,7 @@ public class HoldingGameScript : MonoBehaviour {
         if (Input.GetTouch(0).phase == TouchPhase.Ended)
             fire.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
 	}
+
 
 
 }
