@@ -33,7 +33,7 @@ public class NetworkScript : Photon.PunBehaviour {
 	{
         //send player amount
 
-		int players = GameObject.Find("Slider").GetComponent<Slider>().value;
+		int players = (int)GameObject.Find("Slider").GetComponent<Slider>().value;
 		this.photonView.RPC ("SendFirstGame", PhotonTargets.Others,players);
 
         Application.LoadLevel(2);
