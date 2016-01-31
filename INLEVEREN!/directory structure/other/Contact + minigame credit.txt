@@ -1,9 +1,9 @@
 Chrit Hameleers - Team Lead 
-Minigames made: Turn up the heat
+Minigames made: Turn up the heat, Memory
 contact: chrithameleers@hotmail.com
 
 Dwight Peters - Mobile programming
-Minigames made:
+Minigames made: Shake
 contact: dwightojo@gmail.com
 
 Kylian Kuijer - Main screen programming
@@ -15,5 +15,5 @@ Minigames made: Pour, Tilt
 contact: bram_jonkers@hotmail.com
 
 Merle Delen - Art
-Minigames made: All the visuals for all the minigames
+Minigames made: All the visuals :)
 contact: merle_delen@hotmail.com
