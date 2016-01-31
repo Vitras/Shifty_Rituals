@@ -14,6 +14,7 @@ public class TiltIt : MonoBehaviour
     public GameObject[] crystalHolders;
     float upsideDownTimer;
     GameObject music;
+    public Text[] texts;
 
 
     // Use this for initialization
@@ -37,6 +38,17 @@ public class TiltIt : MonoBehaviour
             crystalHolders[x].GetComponent<Image>().enabled = false;
         }
         Input.gyro.enabled = true;
+        if (Random.Range(0, 2) == 1)
+            difficulty = 0;
+        if (difficulty<=5)
+        {
+            texts[1].enabled = false;
+        }
+        else
+        {
+            texts[0].enabled = true;
+            texts[1].text = "Drop exactly " + threshold.ToString() + " crystals!";
+        }
     }
 
     // Update is called once per frame

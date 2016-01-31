@@ -14,6 +14,7 @@ public class ShakeIt : MonoBehaviour {
     public int goal;
     public float timer, pauzeThreshold;
     public Sprite[] images;
+    GameObject music;
     
 
 
@@ -28,6 +29,7 @@ public class ShakeIt : MonoBehaviour {
         timer = master.timer;
         goal = master.goal;
         pauzeThreshold = master.extraf;
+        music = GameObject.Find("Music");
 	}
 
     // Update is called once per frame
@@ -47,11 +49,17 @@ public class ShakeIt : MonoBehaviour {
                 currImage = 1;
                 flask.sprite = images[(beginColour * 3) + currImage];
                 lastDirection = Vector3.zero;
+                //als de angle groter dan 90 zet volume van looped pouring sound aan, als kleiner zet volume uit (en play verder)
+                AudioSource play = (AudioSource)music.GetComponent("AudioSource");
+                play.volume = 0.0f;
             }
             return;
         }
         if (lastDirection.magnitude == 0)
         {
+            //als de angle groter dan 90 zet volume van looped pouring sound aan, als kleiner zet volume uit (en play verder)
+            AudioSource play = (AudioSource)music.GetComponent("AudioSource");
+            play.volume = 1.0f;
             currImage++;
             to = false;
             flask.sprite = images[(beginColour * 3) + currImage];
