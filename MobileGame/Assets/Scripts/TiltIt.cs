@@ -26,8 +26,8 @@ public class TiltIt : MonoBehaviour
         amountOfCrystals = goal;
         upsideDownTimer = 0;
         crystals = new Image[goal];
-        threshold = 0;//master.threshold;
-        difficulty = 0;//master.difficulty;
+        threshold = master.extrain;
+        difficulty = master.difficulty;
         for (int x = 0; x < crystals.Length; x++)
         {
             crystals[x] = crystalHolders[x].GetComponent<Image>();
@@ -44,7 +44,7 @@ public class TiltIt : MonoBehaviour
         timer -= Time.fixedDeltaTime;
         if (timer < 0)
         {
-            //master.Results(false);
+            master.Results(false);
         }
 
         
@@ -80,7 +80,7 @@ public class TiltIt : MonoBehaviour
 
         if (amountOfCrystals == threshold)
         {
-            //master.Results(true);
+            master.Results(true);
         }
     }
 }

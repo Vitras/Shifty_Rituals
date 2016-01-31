@@ -106,6 +106,19 @@ public class NetworkScript : Photon.PunBehaviour {
         this.photonView.RPC("GameStarted", PhotonTargets.Others);
     }
 
+    void PlayTiltGame(int difficulty)
+    {
+        Debug.Log("need to start game");
+        Application.LoadLevel(6);
+        Debug.Log("gameloading");
+        var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
+        script.goal = Mathf.Clamp(Random.Range(0,8) + difficulty,1,7);
+        script.extrain = Random.Range(1,script.goal+1);
+        script.timer = 15 + Random.Range(-1f, 1f) * difficulty;
+        script.difficulty = difficulty;
+        this.photonView.RPC("GameStarted", PhotonTargets.Others);
+    }
+
 
     [PunRPC]
 	void GetValues(float difficulty, float fuckUp)
