@@ -34,7 +34,7 @@ public class Masher : MonoBehaviour {
         else
         {
             texts[0].enabled = false;
-            texts[1].text = "Mash exactly" + goal.ToString() + "times!";
+            texts[1].text = "Mash exactly " + goal.ToString() + " times!";
         }
 
     }

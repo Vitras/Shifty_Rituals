@@ -13,6 +13,7 @@ public class PourIt : MonoBehaviour
     private float content;
     public Sprite orange, red;
     public Image liquids;
+    public Text[] texts;
 
 
     // Use this for initialization
@@ -29,6 +30,14 @@ public class PourIt : MonoBehaviour
         liquids = GameObject.Find("Liquid").GetComponent<Image>();
         if (Random.Range(0, 2) == 1)
             difficulty = 0;
+        if (difficulty <= 4)
+        {
+            texts[1].enabled = false;
+        }
+        else
+        {
+            texts[0].enabled = false;
+        }
         Input.gyro.enabled = true;
     }
 
