@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class TiltIt : MonoBehaviour
 {
-    //goal is waarde van 0-7 hoeveel crystals er spawnen, threshold is hoever hieraf je moet eindigen.
+    //goal is waarde van 1-7 hoeveel crystals er spawnen, threshold is hoever hieraf je moet eindigen.
 
     GameManager master;
     float timer;
@@ -36,6 +36,7 @@ public class TiltIt : MonoBehaviour
         {
             crystalHolders[x].GetComponent<Image>().enabled = false;
         }
+        Input.gyro.enabled = true;
     }
 
     // Update is called once per frame
@@ -51,15 +52,14 @@ public class TiltIt : MonoBehaviour
         //als ie op zijn kop ligt
         if (Input.deviceOrientation == DeviceOrientation.FaceDown)
         {
-            upsideDownTimer += Time.fixedDeltaTime;
-             
             //scale de val speed met difficulty zodat game halen mogelijk blijft
             if (difficulty <= 5)
             {
+                upsideDownTimer += Time.fixedDeltaTime;
                 if (upsideDownTimer >= 1.0f)
                 {
                     upsideDownTimer -= 1.0f;
-                    crystals[amountOfCrystals].enabled = false;
+                    crystals[amountOfCrystals - 1].enabled = false;
                     amountOfCrystals--;
                     AudioSource play = (AudioSource)music.GetComponent("AudioSource");
                     play.Play();
@@ -67,20 +67,23 @@ public class TiltIt : MonoBehaviour
             }
             else //(difficulty > 5)
             {
+                upsideDownTimer += Time.fixedDeltaTime;
                 if (upsideDownTimer >= 0.5f)
                 {
                     upsideDownTimer -= 0.5f;
-                    crystals[amountOfCrystals].enabled = false;
+                    crystals[amountOfCrystals - 1].enabled = false;
                     amountOfCrystals--;
                     AudioSource play = (AudioSource)music.GetComponent("AudioSource");
                     play.Play();
                 }
             }
         }
-
-        if (amountOfCrystals == threshold)
+        else
         {
-            master.Results(true);
+            if (amountOfCrystals == goal - threshold)
+            {
+                master.Results(true);
+            }
         }
     }
 }
