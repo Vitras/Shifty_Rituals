@@ -12,6 +12,7 @@ public class HoldingGameScript : MonoBehaviour {
 	public bool firing;
     public float timer;
     public float heat, incRatio, goal;
+    GameObject music1, music2;
 
 	public enum BurnerState
 	{
@@ -33,6 +34,8 @@ public class HoldingGameScript : MonoBehaviour {
         goal = master.goal;
         timer = master.timer;
 
+        music1 = GameObject.Find("Music1");
+        music2 = GameObject.Find("Music2");
 	}
 	
 	// Update is called once per frame
@@ -47,7 +50,10 @@ public class HoldingGameScript : MonoBehaviour {
 		else if (heat <= goal * (0.75)) {
 			currentState = BurnerState.Turbulent;
 		} else if (heat <= goal) {
-			currentState = BurnerState.Done;
+            currentState = BurnerState.Done;
+            //als de angle groter dan 90 zet volume van looped pouring sound aan, als kleiner zet volume uit (en play verder)
+            AudioSource play = (AudioSource)music2.GetComponent("AudioSource");
+            play.volume = 1.0f;
 		}
         else
             currentState = BurnerState.Overflowing;
@@ -98,6 +104,9 @@ public class HoldingGameScript : MonoBehaviour {
 		{
 			fire.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f);
 			firing = true;
+            //als de angle groter dan 90 zet volume van looped pouring sound aan, als kleiner zet volume uit (en play verder)
+            AudioSource play = (AudioSource)music1.GetComponent("AudioSource");
+            play.volume = 1.0f;
 		}
         if (Input.GetTouch(0).phase == TouchPhase.Ended)
         {
@@ -106,7 +115,10 @@ public class HoldingGameScript : MonoBehaviour {
             else if (currentState == BurnerState.Overflowing)
                 master.Results(false);
             fire.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-			firing = false;
+            firing = false;
+            //als de angle groter dan 90 zet volume van looped pouring sound aan, als kleiner zet volume uit (en play verder)
+            AudioSource play = (AudioSource)music1.GetComponent("AudioSource");
+            play.volume = 0.0f;
         }
          
 
