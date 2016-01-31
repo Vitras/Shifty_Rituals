@@ -16,7 +16,9 @@ public class Master : MonoBehaviour {
 	public int currentclip;
 	public int playerCount;
 
-	void Start () {
+	void Start ()
+    {
+
 		DontDestroyOnLoad(this);
 		currentclip = -1;
 		playerCount = 2;
@@ -68,6 +70,7 @@ public class Master : MonoBehaviour {
 		Debug.Log("You lose. Good day sir!");
 		GameState = 2;
         DontDestroyOnLoad(gameObject);
+        GetComponentInChildren<NetworkScript>().photonView.RPC("GameOver", PhotonTargets.Others);
         Application.LoadLevel(4);
 	}
 
