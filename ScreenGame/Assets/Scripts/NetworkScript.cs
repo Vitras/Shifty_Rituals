@@ -10,13 +10,20 @@ public class NetworkScript : Photon.PunBehaviour {
 	public string roomName;
 	public string memorisationTerm;
 	public int memorisationTurn;
+    private Master master;
 
 	// Use this for initialization
 	public void Start() 
 	{
 		//connect to photon network
 		PhotonNetwork.ConnectUsingSettings("0.0");
+        master = GameObject.Find("Master").GetComponent<Master>();
 	}
+
+    public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)
+    {
+        master.GameOver();
+    }
 
 	// Update is called once per frame
 	void OnGUI () 
@@ -87,9 +94,10 @@ public class NetworkScript : Photon.PunBehaviour {
     }
 
     [PunRPC]
-	void SendFirstGame()
+	void SendFirstGame(int playerAmount)
 	{
-		//do something fancy with these values
+        //do something fancy with these values
+        master.playerCount = playerAmount;
 		GenerateGame(Random.Range(0, MINIGAME_COUNT));
 		Application.LoadLevel("InGame");
 		Debug.Log("SendFirstGame");
@@ -103,9 +111,9 @@ public class NetworkScript : Photon.PunBehaviour {
 		if(Random.Range(0, 5) < 3 && memorisationTurn <= 0)
 		{
 			Debug.Log("memory incoming");
-		GameObject.Find("Master").GetComponent<Master>().SetGroupTask("Remember the following word for later: ");
+		master.SetGroupTask("Remember the following word for later: ");
 		memorisationTerm = GenerateRoomName(
-				Random.Range(3, 3 + GameObject.Find("Master").GetComponent<Master>().Difficulty/2));
+				Random.Range(3, 3 + master.Difficulty/2));
 
 			GameObject.Find("Memorisation").GetComponent<Text>().text = memorisationTerm;
 			memorisationTurn = Random.Range(2, 6);
@@ -134,10 +142,10 @@ public class NetworkScript : Photon.PunBehaviour {
 	[PunRPC]
 	void GameEnded(bool success)
 	{
-		GameObject.Find("Master").GetComponent<Master>().ApplyResult(success);
+		master.ApplyResult(success);
 		Debug.Log("Game ended");
 		GameObject.Find("Memorisation").GetComponent<Text>().text = "";
-		GameObject.Find("Master").GetComponent<Master>().SetGroupTask("");
+		master.SetGroupTask("");
 		//set some internal variable
 		//adjust fuckup meter
 	}
