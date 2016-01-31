@@ -10,6 +10,7 @@ public class Masher : MonoBehaviour {
     public Image currentSpriteRenderer;
     private int mashed = 0, goal, difficulty;
     private float timer;
+    GameObject music;
 
 
     // Use this for initialization
@@ -23,6 +24,7 @@ public class Masher : MonoBehaviour {
         difficulty = master.difficulty;
         if (Random.Range(0, 2) == 1)
             difficulty = 0;
+        music = GameObject.Find("Music");
     }
 
     // Update is called once per frame
@@ -46,6 +48,9 @@ public class Masher : MonoBehaviour {
         if (previousState == 0 && currentState == 1)
         {
             Debug.Log("Mash!");
+            //als de angle groter dan 90 zet volume van looped pouring sound aan, als kleiner zet volume uit (en play verder)
+            AudioSource play = (AudioSource)music.GetComponent("AudioSource");
+            play.Play();
             mashed++;
         }
 
