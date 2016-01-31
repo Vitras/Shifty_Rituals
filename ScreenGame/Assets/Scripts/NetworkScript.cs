@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class NetworkScript : Photon.PunBehaviour {
 
-	public const int MINIGAME_COUNT = 3;
+	public const int MINIGAME_COUNT = 5;
 	public string roomName;
 	public string memorisationTerm;
 	public int memorisationTurn;
@@ -62,6 +62,14 @@ public class NetworkScript : Photon.PunBehaviour {
 			this.photonView.RPC("PlayHoldGame",PhotonTargets.Others, GameObject.Find("Master").GetComponent<Master>().Difficulty);
 			Debug.Log("PlayHoldGame!");
 			return;
+		case 3: 
+			this.photonView.RPC("PlayPourGame",PhotonTargets.Others, GameObject.Find("Master").GetComponent<Master>().Difficulty);
+			Debug.Log("PlayPourGame!");
+			return;
+		case 4: 
+			this.photonView.RPC("PlayTiltGame",PhotonTargets.Others, GameObject.Find("Master").GetComponent<Master>().Difficulty);
+			Debug.Log("PlayTiltGame!");
+			return;
 		default: return;
 		}
 	}
@@ -85,24 +93,27 @@ public class NetworkScript : Photon.PunBehaviour {
 	[PunRPC]
 	void SendNextGame()
 	{
-		if(Random.Range(0, 5) < 3)
+		Debug.Log("PickingNextGame");
+		if(Random.Range(0, 5) < 3 && memorisationTurn <= 0)
 		{
+			Debug.Log("memory incoming");
 		GameObject.Find("Master").GetComponent<Master>().SetGroupTask("Remember the following word for later: ");
-		GameObject.Find("MemorisationNotifier").GetComponent<Text>().text = GenerateRoomName(
-			Random.Range(3, 3 + GameObject.Find("Master").GetComponent<Master>().Difficulty/2));
+		memorisationTerm = GenerateRoomName(
+				Random.Range(3, 3 + GameObject.Find("Master").GetComponent<Master>().Difficulty/2));
+
+			GameObject.Find("Memorisation").GetComponent<Text>().text = memorisationTerm;
 			memorisationTurn = Random.Range(2, 6);
 		}
 		memorisationTurn--;
 		if(memorisationTurn == 0)
 		{
-			this.photonView.RPC("PlayMemorisationGame", PhotonTargets.Others, memorisationTerm);
-			Debug.Log("PlayMemorisationGame");
+			this.photonView.RPC("PlayMemoryGame", PhotonTargets.Others, memorisationTerm);
+			Debug.Log("PlayMemoryGame");
 		}
 		else
 		{
-		GameObject.Find("MemorisationNotifier").GetComponent<Text>().text = "";
 		GenerateGame(Random.Range(0, MINIGAME_COUNT));
-		Debug.Log("NextGame");
+		Debug.Log("NextGameSent");
 		}
 
 	}
@@ -118,7 +129,9 @@ public class NetworkScript : Photon.PunBehaviour {
 	void GameEnded(bool success)
 	{
 		GameObject.Find("Master").GetComponent<Master>().ApplyResult(success);
-		Debug.Log("Game started");
+		Debug.Log("Game ended");
+		GameObject.Find("Memorisation").GetComponent<Text>().text = "";
+		GameObject.Find("Master").GetComponent<Master>().SetGroupTask("");
 		//set some internal variable
 		//adjust fuckup meter
 	}
