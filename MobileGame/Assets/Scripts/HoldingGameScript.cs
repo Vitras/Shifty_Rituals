@@ -94,8 +94,11 @@ public class HoldingGameScript : MonoBehaviour {
 
         if (Input.touchCount == 0)
             return;
-        if (Input.GetTouch(0).phase == TouchPhase.Began)
-            fire.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+		if (Input.GetTouch (0).phase == TouchPhase.Began) 
+		{
+			fire.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f);
+			firing = true;
+		}
         if (Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             if (currentState == BurnerState.Done)
@@ -103,6 +106,7 @@ public class HoldingGameScript : MonoBehaviour {
             else if (currentState == BurnerState.Overflowing)
                 master.Results(false);
             fire.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+			firing = false;
         }
          
 
