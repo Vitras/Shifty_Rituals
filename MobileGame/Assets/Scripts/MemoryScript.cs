@@ -8,33 +8,38 @@ public class MemoryScript : MonoBehaviour {
 	public Button option1, option2, option3;
 	private GameManager master;
 	public string answer;
+	public string[] answers;
+	public Button theOne;
 
 	// Use this for initialization
 	void Start () 
 	{
 		master = GameObject.Find("MasterObject").GetComponent<GameManager>();
 		answer = master.memoryWord;
+		answers = new string[3];
+
 		string bogus1 = GenerateBogusAnswer (answer.Length);
 		string bogus2 = GenerateBogusAnswer (answer.Length);
 
-		string[] answers = new string[3];
 		int randomSpot = Random.Range (0, 3);
 
 		if (randomSpot == 0) {
 			answers [randomSpot] = answer;
 			answers [1] = bogus1;
 			answers [2] = bogus2;
+			theOne = option1;
 		} else if (randomSpot == 1) {
 			answers [randomSpot] = answer;
 			answers [0] = bogus1;
 			answers [2] = bogus2;
-			
+			theOne = option2;
 		} 
 		else if(randomSpot == 2)
 		{
 			answers [randomSpot] = answer;
 			answers [0] = bogus1;
 			answers [1] = bogus2;
+			theOne = option3;
 		}
 			
 
@@ -58,4 +63,18 @@ public class MemoryScript : MonoBehaviour {
 	{
 		
 	}
+
+
+	public void OnClickButton(int id)
+	{
+		if (answers[id] == answer) {
+			master.Results (true);
+		} 
+		else 
+		{
+			master.Results (false);
+		}
+			
+	}
+
 }
