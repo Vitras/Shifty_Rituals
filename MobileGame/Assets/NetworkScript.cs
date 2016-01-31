@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class NetworkScript : Photon.PunBehaviour {
 
-
-	protected string roomName;
+    public int players;
+    protected string roomName;
 
 	// Use this for initialization
 	public void Connect() 
@@ -33,8 +33,7 @@ public class NetworkScript : Photon.PunBehaviour {
 	{
         //send player amount
 
-		int players = (int)GameObject.Find("Slider").GetComponent<Slider>().value;
-		this.photonView.RPC ("SendFirstGame", PhotonTargets.Others,players);
+		players = (int)GameObject.Find("Slider").GetComponent<Slider>().value;
 
         Application.LoadLevel(2);
 		this.photonView.RPC ("IntroNext", PhotonTargets.Others);
