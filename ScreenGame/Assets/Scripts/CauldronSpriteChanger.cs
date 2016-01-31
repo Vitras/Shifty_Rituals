@@ -40,7 +40,7 @@ public class CauldronSpriteChanger : MonoBehaviour {
 			{
 				CurrentTime = 0;
 				CurrentFrame = (CurrentFrame + 1) % Frames;
-				CauldronSprite.sprite = CauldronSheet[CurrentFrame, Mathf.Min((GameObject.Find("Master").GetComponent<Master>().Difficulty - 1), 10) / 2];
+				CauldronSprite.sprite = CauldronSheet[CurrentFrame, (Mathf.Min((GameObject.Find("Master").GetComponent<Master>().Difficulty), 10) / 2)-1];
 			}
 			SetFrameTime();
 		}

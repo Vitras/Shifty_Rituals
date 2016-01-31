@@ -61,6 +61,7 @@ public class Master : MonoBehaviour {
 			}
 		}
 		SetDifficulty();
+		GroupTask = "";
 	}
 
 	public void GameOver(){
@@ -87,7 +88,9 @@ public class Master : MonoBehaviour {
 		FailureScale++;
 	}
 
-	public void SetGroupTask(){
+	public void SetGroupTask(string task){
+		GroupTask = task;
+		GameObject.Find("GroupNotifier").GetComponent<Text>().text = GroupTask;
 	}
 
 	public void ChangeClip(){
