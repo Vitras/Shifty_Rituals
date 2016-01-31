@@ -10,6 +10,6 @@ public class Hoverscript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = new Vector3 (transform.position.x, transform.position.y + Mathf.Sin (Time.time) / 250.0f, transform.position.y);
+		transform.position = new Vector3 (transform.position.x, transform.position.y + Mathf.Sin (Time.time) / 400.0f, transform.position.y);
 	}
 }
