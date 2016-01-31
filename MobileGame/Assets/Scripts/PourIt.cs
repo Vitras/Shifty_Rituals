@@ -10,7 +10,7 @@ public class PourIt : MonoBehaviour
     GameObject liquid, music;
     private float timer;
     private int goal, threshold, difficulty;
-    private int content;
+    private float content;
     public Sprite orange, red;
     public Image liquids;
 
@@ -29,6 +29,7 @@ public class PourIt : MonoBehaviour
         liquids = GameObject.Find("Liquid").GetComponent<Image>();
         if (Random.Range(0, 2) == 1)
             difficulty = 0;
+        Input.gyro.enabled = true;
     }
 
     // Update is called once per frame
@@ -39,45 +40,47 @@ public class PourIt : MonoBehaviour
         {
             master.Results(false);
         }
-
         
         //lees rotation van device
         //stel rotation van content hieropaan
-        Quaternion mobileRotation = Input.gyro.attitude;
-        liquid.transform.rotation = new Quaternion(0, 0, mobileRotation.z, mobileRotation.w);
-
-        //als angle > 90 een kant op dan loopt ie leeg met speed based op hoeveel groter
-        if (liquid.transform.rotation.z > 90 && liquid.transform.rotation.z < 270)
-        {
+        if (Input.deviceOrientation == DeviceOrientation.LandscapeLeft || Input.deviceOrientation == DeviceOrientation.LandscapeRight || Input.deviceOrientation == DeviceOrientation.FaceUp || Input.deviceOrientation == DeviceOrientation.FaceDown)
+        { // Rotated ~90 degrees
+            if (Input.deviceOrientation == DeviceOrientation.LandscapeRight)
+            {
+                liquid.transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
+            else
+            {
+                liquid.transform.rotation = Quaternion.Euler(0, 0, 270);
+            }
             //leeglopen moved content sprite down
-            int change = (((int)(liquid.transform.rotation.z - 180) ^ 2) / 810);
-            liquid.transform.localPosition -= liquid.transform.up * change;
+            float change = 0.1f;
+            //liquid.transform.localPosition -= liquid.transform.up * change * 5;
+            RectTransform trans = (RectTransform)liquid.GetComponent("RectTransform");
+            trans.anchoredPosition3D -= liquid.transform.up * change * 5;
             content -= change;
-
-            //Win op easy difficulty als empty
-            if (content <= 0 && difficulty <= 4)
-            {
-                master.Results(true);
-            }
-            else if (difficulty >= 5)
-            {
-                //Change water color based on hoe close je bent als warning/ indication
-                if (content <= (goal + threshold))
-                {
-                    liquids.sprite = orange;
-                }
-                if (content <= goal)
-                {
-                    liquids.sprite = red;
-                }
-            }
 
             //als de angle groter dan 90 zet volume van looped pouring sound aan, als kleiner zet volume uit (en play verder)
             AudioSource play = (AudioSource)music.GetComponent("AudioSource");
             play.volume = 1.0f;
         }
-        else
+        else if (Input.deviceOrientation == DeviceOrientation.PortraitUpsideDown)
+        { // Rotated ~180 degrees
+            liquid.transform.rotation = Quaternion.Euler(0, 0, 180);
+            //leeglopen moved content sprite down
+            float change = 0.5f;
+            //liquid.transform.localPosition -= liquid.transform.up * change * 5;
+            RectTransform trans = (RectTransform)liquid.GetComponent("RectTransform");
+            trans.anchoredPosition3D -= liquid.transform.up * change * 5;
+            content -= change;
+
+            //als de angle groter dan 90 zet volume van looped pouring sound aan, als kleiner zet volume uit (en play verder)
+            AudioSource play = (AudioSource)music.GetComponent("AudioSource");
+            play.volume = 1.0f;
+        }
+        else if (Input.deviceOrientation == DeviceOrientation.Portrait)
         {
+            liquid.transform.rotation = Quaternion.Euler(0, 0, 0);
             //als de angle groter dan 90 zet volume van looped pouring sound aan, als kleiner zet volume uit (en play verder)
             AudioSource play = (AudioSource)music.GetComponent("AudioSource");
             play.volume = 0.0f;
@@ -92,5 +95,32 @@ public class PourIt : MonoBehaviour
             }
         }
 
+        //Win op easy difficulty als empty
+        if (difficulty <= 4)
+        {
+            if (content <= 0)
+                master.Results(true);
+        }
+        if (difficulty >= 5)
+        {
+            //Change water color based on hoe close je bent als warning/ indication
+            if (content <= (goal + threshold))
+            {
+                liquids.sprite = orange;
+            }
+            if (content <= goal)
+            {
+                liquids.sprite = red;
+            }
+
+            //lose op higher difficulty als in een bepaalde range
+            if (difficulty >= 5)
+            {
+                if (content < (goal - threshold))
+                {
+                    master.Results(false);
+                }
+            }
+        }
     }
 }
