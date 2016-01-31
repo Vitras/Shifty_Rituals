@@ -6,7 +6,7 @@ public class ShakeIt : MonoBehaviour {
 
 
     Vector3 lastDirection, newDirection;
-    int shakeAmount, beginColour, currImage = 0;
+    int shakeAmount, beginColour, currImage = 1;
     GameManager master;
     Image flask;
     float framesNoMove;
@@ -39,11 +39,12 @@ public class ShakeIt : MonoBehaviour {
             master.Results(false);
         }
         newDirection = Input.acceleration;
-        if (newDirection.magnitude <= 0.5)
+        if (newDirection.magnitude <= 3)
         {
             framesNoMove += Time.fixedDeltaTime;
             if (framesNoMove > pauzeThreshold)
             {
+                currImage = 1;
                 flask.sprite = images[(beginColour * 3) + currImage];
                 lastDirection = Vector3.zero;
             }
@@ -68,12 +69,15 @@ public class ShakeIt : MonoBehaviour {
             }
             if (to)
             {
-                currImage--;
-                to = currImage == 0;
+                currImage++;
+                to = currImage != 2;
             }
             else
+            {
                 currImage++;
-            flask.sprite = images[(beginColour * 3) + currImage];
+                to = currImage == 0;
+            }
+                flask.sprite = images[(beginColour * 3) + currImage];
         }
         lastDirection = newDirection;
     }
