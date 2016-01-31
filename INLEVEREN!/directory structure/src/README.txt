@@ -1,0 +1,1 @@
+Zometeen moet hier komen te staan hoe we de code moeten gebruiken om het spel na te bouwen.
