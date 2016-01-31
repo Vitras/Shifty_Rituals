@@ -2,6 +2,7 @@
 using System.Collections;
 using Photon;
 using System.Linq;
+using UnityEngine.UI;
 
 public class NetworkScript : Photon.PunBehaviour {
 
@@ -31,7 +32,8 @@ public class NetworkScript : Photon.PunBehaviour {
 	public override void OnJoinedRoom ()
 	{
         //send player amount
-		this.photonView.RPC ("SendFirstGame", PhotonTargets.Others);
+		int players = GameObject.Find("Slider").GetComponent<Slider>().value;
+		this.photonView.RPC ("SendFirstGame", PhotonTargets.Others,players);
 	}
 
 	public override void OnPhotonJoinRoomFailed (object[] codeAndMsg)
@@ -42,6 +44,7 @@ public class NetworkScript : Photon.PunBehaviour {
 
 	public void OnSubmit(string code)
 	{
+		code.ToUpper ();
 		PhotonNetwork.JoinRoom (code);
 		roomName = code;
 	}
