@@ -16,7 +16,9 @@ public class Master : MonoBehaviour {
 	public int currentclip;
 	public int playerCount;
 
-	void Start () {
+	void Start ()
+    {
+
 		DontDestroyOnLoad(this);
 		currentclip = -1;
 		playerCount = 2;

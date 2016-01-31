@@ -6,6 +6,7 @@ public class ButtonScript : MonoBehaviour {
     public void ReturnToMenu()
     {
         Application.LoadLevel(1);
-        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.Disconnect();
+        Destroy(GameObject.Find("Master"));
     }
 }

@@ -27,6 +27,7 @@ public class Doorgaan : MonoBehaviour {
             {
                 DontDestroyOnLoad(GameObject.Find("MasterObject"));
                 PhotonNetwork.LeaveRoom();
+                Application.LoadLevel("menu");
             }
         }
 

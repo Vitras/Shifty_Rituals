@@ -97,9 +97,9 @@ public class NetworkScript : Photon.PunBehaviour {
 	void SendFirstGame(int playerAmount)
 	{
         //do something fancy with these values
+        Application.LoadLevel("InGame");
         master.playerCount = playerAmount;
 		GenerateGame(Random.Range(0, MINIGAME_COUNT));
-		Application.LoadLevel("InGame");
 		Debug.Log("SendFirstGame");
 
 	}
