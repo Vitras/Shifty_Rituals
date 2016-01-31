@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public float timer, extraf;
     public int goal, extrain;
     public bool succes;
+	public string memoryWord;
 
 	// Use this for initialization
 	void Start ()
