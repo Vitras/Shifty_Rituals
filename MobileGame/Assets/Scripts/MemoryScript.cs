@@ -10,10 +10,13 @@ public class MemoryScript : MonoBehaviour {
 	public string answer;
 	public string[] answers;
 	public Button theOne;
+	public float timer;
+
 
 	// Use this for initialization
 	void Start () 
 	{
+		timer = 8.0f;
 		master = GameObject.Find("MasterObject").GetComponent<GameManager>();
 		answer = master.memoryWord;
 		answers = new string[3];
@@ -59,9 +62,13 @@ public class MemoryScript : MonoBehaviour {
 		
 
 	// Update is called once per frame
-	void Update () 
+	void FixedUpdate () 
 	{
-		
+		timer -= Time.fixedDeltaTime;
+		if (timer <= 0)
+		{
+			master.Results(false);
+		}
 	}
 
 

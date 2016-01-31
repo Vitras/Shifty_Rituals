@@ -37,13 +37,13 @@ public class GameManager : MonoBehaviour {
 
         // pull fuckup and difficulty
         DontDestroyOnLoad(gameObject);
-        Application.LoadLevel(8);
+        Application.LoadLevel(9);
 
     }
 
     public void NextGame()
     {
-        networkManager.photonView.RPC("SendFirstGame", PhotonTargets.Others);
+        networkManager.photonView.RPC("SendNextGame", PhotonTargets.Others);
     }
     public void ReturntoMenu()
     {

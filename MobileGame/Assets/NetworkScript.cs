@@ -56,7 +56,7 @@ public class NetworkScript : Photon.PunBehaviour {
 	void PlayShakeGame(int difficulty)
 	{
         Debug.Log("need to start game");
-		Application.LoadLevel (2);
+		Application.LoadLevel (3);
         Debug.Log("gameloading");
 		var script = GameObject.Find ("MasterObject").GetComponent<GameManager>();
         script.difficulty = difficulty;
@@ -70,7 +70,7 @@ public class NetworkScript : Photon.PunBehaviour {
     void PlayMashGame(int difficulty)
     {
         Debug.Log("need to start game");
-        Application.LoadLevel(3);
+        Application.LoadLevel(4);
         Debug.Log("gameloading");
         var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
         script.goal = 10*difficulty+10+Random.Range(-5,6);
@@ -83,7 +83,7 @@ public class NetworkScript : Photon.PunBehaviour {
     void PlayHoldGame(int difficulty)
     {
         Debug.Log("need to start game");
-        Application.LoadLevel(4);
+        Application.LoadLevel(5);
         Debug.Log("gameloading");
         var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
         script.goal = 100+5*difficulty+Random.Range(-10,11);
@@ -93,10 +93,11 @@ public class NetworkScript : Photon.PunBehaviour {
         this.photonView.RPC("GameStarted", PhotonTargets.Others);
     }
 
+	[PunRPC]
     void PlayPourGame(int difficulty)
     {
         Debug.Log("need to start game");
-        Application.LoadLevel(5);
+        Application.LoadLevel(6);
         Debug.Log("gameloading");
         var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
         script.goal = Random.Range(0,100);
@@ -106,10 +107,11 @@ public class NetworkScript : Photon.PunBehaviour {
         this.photonView.RPC("GameStarted", PhotonTargets.Others);
     }
 
+	[PunRPC]
     void PlayTiltGame(int difficulty)
     {
         Debug.Log("need to start game");
-        Application.LoadLevel(6);
+        Application.LoadLevel(8);
         Debug.Log("gameloading");
         var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
         script.goal = Mathf.Clamp(Random.Range(0,8) + difficulty,1,7);
@@ -119,6 +121,7 @@ public class NetworkScript : Photon.PunBehaviour {
         this.photonView.RPC("GameStarted", PhotonTargets.Others);
     }
 
+	[PunRPC]
 	void PlayMemoryGame(string answer)
 	{
 		Debug.Log("need to start game");
