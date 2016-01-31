@@ -87,6 +87,9 @@ public class TiltIt : MonoBehaviour
                     amountOfCrystals--;
                     AudioSource play = (AudioSource)music.GetComponent("AudioSource");
                     play.Play();
+
+                    if (amountOfCrystals < (goal - threshold))
+                        master.Results(false);
                 }
             }
         }
