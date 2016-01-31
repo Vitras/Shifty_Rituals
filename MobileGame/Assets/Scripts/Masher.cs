@@ -8,6 +8,7 @@ public class Masher : MonoBehaviour {
     public Sprite[] MasherSprites;
     public int currentState;
     public Image currentSpriteRenderer;
+    public Text[] texts;
     private int mashed = 0, goal, difficulty;
     private float timer;
     GameObject music;
@@ -25,6 +26,17 @@ public class Masher : MonoBehaviour {
         if (Random.Range(0, 2) == 1)
             difficulty = 0;
         music = GameObject.Find("Music");
+
+        if (difficulty <= 4)
+        {
+            texts[1].enabled = false;
+        }
+        else
+        {
+            texts[0].enabled = false;
+            texts[1].text = "Mash exactly" + goal.ToString() + "times!";
+        }
+
     }
 
     // Update is called once per frame
