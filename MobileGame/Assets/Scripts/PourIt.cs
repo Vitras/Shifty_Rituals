@@ -8,9 +8,9 @@ public class PourIt : MonoBehaviour
 
     GameManager master;
     GameObject liquid, music;
-    public float timer;
-    public int goal, threshold, difficulty;
-    public int content;
+    private float timer;
+    private int goal, threshold, difficulty;
+    private int content;
     public Sprite orange, red;
     public Image liquids;
 
@@ -23,10 +23,12 @@ public class PourIt : MonoBehaviour
         music = GameObject.Find("Music");
         timer = master.timer;
         goal = master.goal;
-        threshold = 0;//master.threshold;
-        difficulty = 0;//master.difficulty;
+        threshold = master.extrain;
+        difficulty = master.difficulty;
         content = 100;
         liquids = GameObject.Find("Liquid").GetComponent<Image>();
+        if (Random.Range(0, 2) == 1)
+            difficulty = 0;
     }
 
     // Update is called once per frame
@@ -35,7 +37,7 @@ public class PourIt : MonoBehaviour
         timer -= Time.fixedDeltaTime;
         if (timer < 0)
         {
-            //master.Results(false);
+            master.Results(false);
         }
 
         
@@ -55,7 +57,7 @@ public class PourIt : MonoBehaviour
             //Win op easy difficulty als empty
             if (content <= 0 && difficulty <= 4)
             {
-                //master.Result(true);
+                master.Results(true);
             }
             else if (difficulty >= 5)
             {
@@ -85,7 +87,7 @@ public class PourIt : MonoBehaviour
             {
                 if (content < goal && content > (goal - threshold))
                 {
-                    //master.Result(true);
+                    master.Results(true);
                 }
             }
         }

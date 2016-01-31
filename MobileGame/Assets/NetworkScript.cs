@@ -53,44 +53,58 @@ public class NetworkScript : Photon.PunBehaviour {
 	}
 
 	[PunRPC]
-	void PlayShakeGame(int goal, float threshold, float timer)
+	void PlayShakeGame(int difficulty)
 	{
         Debug.Log("need to start game");
 		Application.LoadLevel (2);
         Debug.Log("gameloading");
 		var script = GameObject.Find ("MasterObject").GetComponent<GameManager>();
-        script.goal = goal;
-		script.extraf = threshold;
-        script.timer = timer;
+        script.difficulty = difficulty;
+        script.goal = Mathf.Clamp(10+2*difficulty+Random.Range(-5,6),10,70);
+		script.extraf = 30-2*difficulty;
+        script.timer = 12+Random.Range(-1f,1f)*difficulty;
 		this.photonView.RPC ("GameStarted", PhotonTargets.Others);
 	}
 
     [PunRPC]
-    void PlayMashGame(int goal, float timer)
+    void PlayMashGame(int difficulty)
     {
         Debug.Log("need to start game");
         Application.LoadLevel(3);
         Debug.Log("gameloading");
         var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
-        script.goal = goal;
-        script.timer = timer;
+        script.goal = 10*difficulty+10+Random.Range(-5,6);
+        script.timer = 12 + Random.Range(-1f, 1f) * difficulty;
+        script.difficulty = difficulty;
         this.photonView.RPC("GameStarted", PhotonTargets.Others);
     }
 
     [PunRPC]
-    void PlayHoldGame(int goal, int incRatio, float timer)
+    void PlayHoldGame(int difficulty)
     {
         Debug.Log("need to start game");
         Application.LoadLevel(4);
         Debug.Log("gameloading");
         var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
-        script.goal = goal;
-        script.extrain = incRatio;
-        script.timer = timer;
+        script.goal = 100+5*difficulty+Random.Range(-10,11);
+        script.extrain = script.goal/7 - Random.Range(5,11);
+        script.timer = 12 + Random.Range(-1f, 1f) * difficulty;
+        script.difficulty = difficulty;
         this.photonView.RPC("GameStarted", PhotonTargets.Others);
     }
 
-
+    void PlayPourGame(int difficulty)
+    {
+        Debug.Log("need to start game");
+        Application.LoadLevel(5);
+        Debug.Log("gameloading");
+        var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
+        script.goal = Random.Range(0,100);
+        script.extrain = 100/difficulty + Random.Range(-5,6);
+        script.timer = 12 + Random.Range(-1f, 1f) * difficulty;
+        script.difficulty = difficulty;
+        this.photonView.RPC("GameStarted", PhotonTargets.Others);
+    }
 
 
     [PunRPC]

@@ -30,14 +30,14 @@ public class WinLose : MonoBehaviour {
         Debug.Log("StartWait");
         StartCoroutine(wait2Sec());
         Debug.Log("EndWait");
-        master.NextGame();
+
 
     }
 	
 	// Update is called once per frame
 	IEnumerator wait2Sec()
     {
-        yield return new WaitForSeconds(3);
-
+        yield return new WaitForSeconds(1.5f);
+        master.NextGame();
     }
 }

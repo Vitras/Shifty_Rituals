@@ -3,10 +3,9 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
     public int amountGames = 4;
-    public float fuckUp, difficulty;
 	private NetworkScript networkManager;
     public float timer, extraf;
-    public int goal, extrain;
+    public int goal, extrain, difficulty;
     public bool succes;
 
 	// Use this for initialization
@@ -37,7 +36,7 @@ public class GameManager : MonoBehaviour {
 
         // pull fuckup and difficulty
         DontDestroyOnLoad(gameObject);
-        Application.LoadLevel(5);
+        Application.LoadLevel(6);
 
     }
 
