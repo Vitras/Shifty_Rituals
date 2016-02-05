@@ -29,7 +29,7 @@ public class HoldingGameScript : MonoBehaviour {
 	{
 		currentState = BurnerState.Calm;
         master = GameObject.Find("MasterObject").GetComponent<GameManager>();
-        incRatio = master.extrain;
+        incRatio = master.extraf;
 
         goal = master.goal;
         timer = master.timer;

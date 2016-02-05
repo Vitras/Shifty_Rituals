@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Master : MonoBehaviour {
 
@@ -70,8 +71,9 @@ public class Master : MonoBehaviour {
 		Debug.Log("You lose. Good day sir!");
 		GameState = 2;
         DontDestroyOnLoad(gameObject);
+        Debug.Log("Telling Phone about loss");
         GetComponentInChildren<NetworkScript>().photonView.RPC("GameOver", PhotonTargets.Others);
-        Application.LoadLevel(4);
+        SceneManager.LoadScene(4);
 	}
 
 

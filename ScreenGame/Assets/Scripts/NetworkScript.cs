@@ -22,6 +22,7 @@ public class NetworkScript : Photon.PunBehaviour {
 
     public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)
     {
+        Debug.Log("lost connection to phone");
         master.GameOver();
     }
 

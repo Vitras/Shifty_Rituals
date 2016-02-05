@@ -85,6 +85,7 @@ public class ShakeIt : MonoBehaviour {
                 currImage++;
                 to = currImage == 0;
             }
+            Debug.Log(currImage);
                 flask.sprite = images[(beginColour * 3) + currImage];
         }
         lastDirection = newDirection;
