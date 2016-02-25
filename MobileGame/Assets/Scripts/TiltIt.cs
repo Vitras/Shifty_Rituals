@@ -42,11 +42,13 @@ public class TiltIt : MonoBehaviour
             difficulty = 0;
         if (difficulty<=5)
         {
+            texts[0].enabled = true;
             texts[1].enabled = false;
         }
         else
         {
-            texts[0].enabled = true;
+            texts[0].enabled = false;
+            texts[1].enabled = true ;
             texts[1].text = "Drop exactly " + threshold.ToString() + " crystals!";
         }
     }
