@@ -76,6 +76,11 @@ public class TiltIt : MonoBehaviour
                     AudioSource play = (AudioSource)music.GetComponent("AudioSource");
                     play.Play();
                 }
+
+                if (amountOfCrystals == goal - threshold)
+                {
+                    master.Results(true);
+                }
             }
             else //(difficulty > 5)
             {
@@ -99,6 +104,8 @@ public class TiltIt : MonoBehaviour
             {
                 master.Results(true);
             }
+            if (difficulty > 5 && amountOfCrystals < (goal - threshold))
+                master.Results(false);
         }
     }
 }

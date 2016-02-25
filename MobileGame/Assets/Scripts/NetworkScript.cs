@@ -122,7 +122,7 @@ public class NetworkScript : Photon.PunBehaviour {
         Debug.Log("gameloading");
         var script = GameObject.Find("MasterObject").GetComponent<GameManager>();
         script.goal = Mathf.Clamp(Random.Range(0,8) + difficulty,1,7);
-        script.extrain = Random.Range(1,script.goal+1);
+        script.extrain = Mathf.Clamp(Random.Range(1,script.goal+1), 1, script.goal);
         script.timer = 15 + Random.Range(-1f, 1f) * difficulty;
         script.difficulty = difficulty;
         this.photonView.RPC("GameStarted", PhotonTargets.Others);
